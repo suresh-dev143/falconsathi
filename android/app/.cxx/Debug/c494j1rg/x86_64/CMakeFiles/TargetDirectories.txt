@@ -1,0 +1,2 @@
+D:/Github/falconsathi/android/app/.cxx/Debug/c494j1rg/x86_64/CMakeFiles/edit_cache.dir
+D:/Github/falconsathi/android/app/.cxx/Debug/c494j1rg/x86_64/CMakeFiles/rebuild_cache.dir
