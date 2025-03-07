@@ -25,6 +25,7 @@ class CustomFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: const TextStyle(color: Colors.white),
       onTap: onTap,
       controller: controller,
       keyboardType: textinputtype,
@@ -34,6 +35,7 @@ class CustomFields extends StatelessWidget {
         fillColor: fillColor,
         filled: true,
         hintText: hintText,
+        hintStyle: const TextStyle(color: Colors.white),
         prefixIcon: icon,
         suffixIcon: iconSuffix,
         focusedBorder: OutlineInputBorder(

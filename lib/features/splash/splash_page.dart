@@ -14,10 +14,9 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.darkThemeMode,
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Spalash(),
+      home: Spalash(),
     );
   }
 }
@@ -33,6 +32,7 @@ class _SpalashState extends State<Spalash> {
   Widget build(BuildContext context) {
     var he = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -69,17 +69,17 @@ class _SpalashState extends State<Spalash> {
                 //   fit: BoxFit.fill,
                 // )),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: he * 0.12),
-                        child: const Text(
-                          "Let's Get",
-                          style: TextStyle(fontSize: 45),
-                        ),
+                    Padding(
+                      padding: EdgeInsets.only(top: he * 0.12),
+                      child: const Text(
+                        "Welcome to ",
+                        style: TextStyle(fontSize: 45),
                       ),
                     ),
-                    const Text("Started!",
+                    const Text("fastest services!",
                         style: TextStyle(
                             fontSize: 45,
                             fontWeight: FontWeight.bold,
@@ -90,45 +90,6 @@ class _SpalashState extends State<Spalash> {
             ),
             SizedBox(
               height: he * 0.015,
-            ),
-            GradiantButton(
-              buttonWidth: 200,
-              buttonText: 'SIGN IN',
-              onTap: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: he * 0.01),
-              child: TextBtn(
-                btnText: 'SKIP',
-                btnColor: Colors.white,
-                onTap: () {},
-                textDecoration: TextDecoration.none,
-              ),
-            ),
-            SizedBox(
-              height: he * 0.05,
-            ),
-            const Divider(
-              color: Colors.white,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 0),
-              child: Text(
-                "DIDN'T HAVE ACCOUNT?",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            TextBtn(
-              btnText: 'SIGN UP NOW',
-              // ignore: prefer_const_constructors
-              btnColor: Colors.cyanAccent,
-              onTap: () {},
-              textDecoration: TextDecoration.none,
             ),
           ],
         ),

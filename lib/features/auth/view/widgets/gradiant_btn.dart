@@ -17,11 +17,11 @@ class GradiantButton extends StatelessWidget {
         height: 55,
         width: buttonWidth,
         decoration: BoxDecoration(
-            // gradient: LinearGradient(
-            //   colors: [Pallete.gradient1, Pallete.gradient2],
-            //   begin: Alignment.bottomLeft,
-            //   end: Alignment.topRight,
-            // ),
+            gradient: LinearGradient(
+              colors: [Pallete.gradient1, Pallete.gradient2],
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+            ),
             borderRadius: BorderRadius.circular(15)),
         child: ElevatedButton(
           onPressed: onTap,
