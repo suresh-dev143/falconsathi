@@ -8,7 +8,7 @@ class ServicesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Our Services'),
+        title: const Text('Our Services',style: TextStyle(color: Colors.white),),
         backgroundColor: Pallete.blueDarkColor,
       ),
       body: ListView(

@@ -22,10 +22,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Pallete.blueDarkColor,
-        title: const Text('Home'),
+        title: const Text('Home',style: TextStyle(color: Colors.white),),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications,color: Colors.white,)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.menu,color: Colors.white,)),
         ],
       ),
       body: SingleChildScrollView(
@@ -188,7 +188,7 @@ class HomePage extends StatelessWidget {
                       ),
                       _buildProductCard(
                         'More Products',
-                        'assets/images/more.jpg',
+                        'assets/images/more.png',
                         'View All',
                       ),
                     ],
