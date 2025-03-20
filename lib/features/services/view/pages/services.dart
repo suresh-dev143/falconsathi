@@ -8,7 +8,10 @@ class ServicesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Our Services',style: TextStyle(color: Colors.white),),
+        title: const Text(
+          'Our Services',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Pallete.blueDarkColor,
       ),
       body: ListView(
@@ -27,7 +30,7 @@ class ServicesPage extends StatelessWidget {
             title: 'Pipeline Cleaning',
             description:
                 'Expert pipeline cleaning service to maintain smooth water flow and prevent blockages.',
-            imageUrl: 'assets/images/pipeline-cleaning.jpg', // Add your image
+            imageUrl: 'assets/images/pipeline.jpeg', // Add your image
             price: '₹799',
           ),
           _buildServiceCard(
@@ -35,7 +38,7 @@ class ServicesPage extends StatelessWidget {
             title: 'RO Repairing & Installation',
             description:
                 'Complete RO system maintenance, repair, and new installation services.',
-            imageUrl: 'assets/images/ro-repair.jpg', // Add your image
+            imageUrl: 'assets/images/ro.png', // Add your image
             price: '₹599',
           ),
           _buildServiceCard(
@@ -43,15 +46,15 @@ class ServicesPage extends StatelessWidget {
             title: 'Overflow Sensor Installation',
             description:
                 'Smart overflow prevention system installation for your water tanks.',
-            imageUrl: 'assets/images/sensor.jpg', // Add your image
+            imageUrl: 'assets/images/alarm.jpg', // Add your image
             price: '₹1499',
           ),
           _buildServiceCard(
             context: context,
-            title: 'Server Tank Cleaning',
+            title: 'Sewer Tank Cleaning',
             description:
                 'Thorough cleaning service for server tanks ensuring optimal performance.',
-            imageUrl: 'assets/images/server-tank.jpg', // Add your image
+            imageUrl: 'assets/images/sewer-tank.jpeg', // Add your image
             price: '₹1299',
           ),
           _buildServiceCard(
@@ -59,7 +62,7 @@ class ServicesPage extends StatelessWidget {
             title: 'AC Repairing',
             description:
                 'Professional AC repair and maintenance services for all brands.',
-            imageUrl: 'assets/images/ac-repair.jpg', // Add your image
+            imageUrl: 'assets/images/ac-service.jpg', // Add your image
             price: '₹899',
           ),
           _buildServiceCard(
@@ -67,7 +70,7 @@ class ServicesPage extends StatelessWidget {
             title: 'Fridge Repairing',
             description:
                 'Expert refrigerator repair services for all makes and models.',
-            imageUrl: 'assets/images/fridge-repair.jpg', // Add your image
+            imageUrl: 'assets/images/fridge-repairing.jpg', // Add your image
             price: '₹699',
           ),
         ],
