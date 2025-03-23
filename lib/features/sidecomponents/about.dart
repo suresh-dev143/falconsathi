@@ -1,617 +1,359 @@
-// import 'package:flutter/material.dart';
-// import 'package:falconsathi/core/theme/app_pallete.dart';
-// import 'package:falconsathi/features/auth/view/widgets/gradiant_btn.dart';
+import 'package:flutter/material.dart';
 
-// class AboutUsPage extends StatelessWidget {
-//   const AboutUsPage({super.key});
+class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     var he = MediaQuery.of(context).size.height;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('About Us'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Hero Section with Company Logo
+            Container(
+              width: double.infinity,
+              color: Colors.blue,
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                children: [
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(60),
+                    ),
+                    child: const Icon(
+                      Icons.shopping_bag,
+                      size: 60,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Company Name',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Established 2024',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
-//     return Scaffold(
-//       backgroundColor: Pallete.blueDarkColor,
-//       appBar: AppBar(
-//         backgroundColor: Pallete.blueDarkColor,
-//         title: const Text(
-//           'About Us',
-//           style: TextStyle(color: Colors.white),
-//         ),
-//         leading: IconButton(
-//           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-//           onPressed: () => Navigator.pop(context),
-//         ),
-//       ),
-//       body: SingleChildScrollView(
-//         child: Padding(
-//           padding:
-//               EdgeInsets.symmetric(horizontal: he * 0.03, vertical: he * 0.02),
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               // App Logo and Name
-//               Center(
-//                 child: Column(
-//                   children: [
-//                     Container(
-//                       height: 120,
-//                       width: 120,
-//                       decoration: BoxDecoration(
-//                         color: Pallete.blueColor,
-//                         shape: BoxShape.circle,
-//                         boxShadow: [
-//                           BoxShadow(
-//                             color: Pallete.gradient1.withOpacity(0.5),
-//                             blurRadius: 20,
-//                             spreadRadius: 5,
-//                           ),
-//                         ],
-//                       ),
-//                       child: Center(
-//                         child: Image.asset(
-//                           'assets/images/logo.png',
-//                           height: 80,
-//                           width: 80,
-//                           // If you don't have a logo asset, use an icon instead:
-//                           errorBuilder: (context, error, stackTrace) => Icon(
-//                             Icons.school,
-//                             size: 60,
-//                             color: Pallete.textColor,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     const SizedBox(height: 15),
-//                     Text(
-//                       'falconsathi',
-//                       style: TextStyle(
-//                         fontSize: 28,
-//                         fontWeight: FontWeight.bold,
-//                         color: Pallete.titleTextColor,
-//                       ),
-//                     ),
-//                     const SizedBox(height: 5),
-//                     Text(
-//                       'Version 1.0.0',
-//                       style: TextStyle(
-//                         fontSize: 14,
-//                         color: Colors.white.withOpacity(0.7),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
+            // Mission Statement
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Our Mission',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'To provide innovative solutions that enhance people\'s lives through technology and exceptional service.',
+                    style: TextStyle(
+                      fontSize: 16,
+                      height: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
 
-//               const SizedBox(height: 30),
+                  // Company Values
+                  const Text(
+                    'Our Values',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildValueCard(
+                    icon: Icons.star,
+                    title: 'Excellence',
+                    description:
+                        'We strive for excellence in everything we do.',
+                  ),
+                  _buildValueCard(
+                    icon: Icons.handshake,
+                    title: 'Integrity',
+                    description:
+                        'We conduct our business with the highest standards of integrity.',
+                  ),
+                  _buildValueCard(
+                    icon: Icons.people,
+                    title: 'Customer Focus',
+                    description:
+                        'Our customers are at the heart of everything we do.',
+                  ),
+                  _buildValueCard(
+                    icon: Icons.lightbulb,
+                    title: 'Innovation',
+                    description:
+                        'We continuously innovate to stay ahead of the curve.',
+                  ),
 
-//               // Our Mission Section
-//               _buildSectionHeader('Our Mission'),
-//               _buildContentCard(
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       'Empowering Education Through Technology',
-//                       style: TextStyle(
-//                         fontSize: 18,
-//                         fontWeight: FontWeight.bold,
-//                         color: Pallete.textColor,
-//                       ),
-//                     ),
-//                     const SizedBox(height: 15),
-//                     const Text(
-//                       'falconsathi is dedicated to revolutionizing the way students prepare for exams. Our mission is to provide an accessible, engaging, and effective platform that helps students achieve academic excellence through personalized learning experiences.',
-//                       style: TextStyle(
-//                         fontSize: 15,
-//                         color: Colors.white,
-//                         height: 1.5,
-//                       ),
-//                     ),
-//                     const SizedBox(height: 15),
-//                     const Text(
-//                       'We believe that quality education should be available to everyone, regardless of their background or location. Through innovative technology and thoughtful design, we aim to break down barriers to learning and create opportunities for all students to succeed.',
-//                       style: TextStyle(
-//                         fontSize: 15,
-//                         color: Colors.white,
-//                         height: 1.5,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
+                  const SizedBox(height: 24),
 
-//               const SizedBox(height: 25),
+                  // Team Section
+                  const Text(
+                    'Our Team',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 160,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        _buildTeamMemberCard(
+                          name: 'John Doe',
+                          role: 'CEO',
+                          imageUrl: 'https://example.com/john.jpg',
+                        ),
+                        _buildTeamMemberCard(
+                          name: 'Jane Smith',
+                          role: 'CTO',
+                          imageUrl: 'https://example.com/jane.jpg',
+                        ),
+                        _buildTeamMemberCard(
+                          name: 'Mike Johnson',
+                          role: 'Design Lead',
+                          imageUrl: 'https://example.com/mike.jpg',
+                        ),
+                        _buildTeamMemberCard(
+                          name: 'Sarah Williams',
+                          role: 'Marketing Director',
+                          imageUrl: 'https://example.com/sarah.jpg',
+                        ),
+                      ],
+                    ),
+                  ),
 
-//               // Key Features Section
-//               _buildSectionHeader('Key Features'),
-//               _buildContentCard(
-//                 child: Column(
-//                   children: [
-//                     _buildFeatureItem(
-//                       icon: Icons.quiz,
-//                       title: 'Interactive Quizzes',
-//                       description:
-//                           'Engage with dynamic quizzes that adapt to your learning style and pace.',
-//                     ),
-//                     const Divider(color: Colors.white24, height: 30),
-//                     _buildFeatureItem(
-//                       icon: Icons.analytics,
-//                       title: 'Performance Analytics',
-//                       description:
-//                           'Track your progress with detailed insights and personalized recommendations.',
-//                     ),
-//                     const Divider(color: Colors.white24, height: 30),
-//                     _buildFeatureItem(
-//                       icon: Icons.timer,
-//                       title: 'Timed Practice Tests',
-//                       description:
-//                           'Prepare for the real exam environment with timed practice sessions.',
-//                     ),
-//                     const Divider(color: Colors.white24, height: 30),
-//                     _buildFeatureItem(
-//                       icon: Icons.people,
-//                       title: 'Collaborative Learning',
-//                       description:
-//                           'Connect with peers and educators to enhance your learning experience.',
-//                     ),
-//                   ],
-//                 ),
-//               ),
+                  const SizedBox(height: 24),
 
-//               const SizedBox(height: 25),
+                  // Contact Information
+                  const Text(
+                    'Contact Us',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildContactItem(
+                    icon: Icons.email,
+                    title: 'Email',
+                    content: 'contact@company.com',
+                    onTap: () {
+                      // Launch email client
+                    },
+                  ),
+                  _buildContactItem(
+                    icon: Icons.phone,
+                    title: 'Phone',
+                    content: '+1 (555) 123-4567',
+                    onTap: () {
+                      // Launch phone dialer
+                    },
+                  ),
+                  _buildContactItem(
+                    icon: Icons.location_on,
+                    title: 'Address',
+                    content: '123 Business Street, City, Country',
+                    onTap: () {
+                      // Open maps
+                    },
+                  ),
 
-//               // Our Team Section
-//               _buildSectionHeader('Our Team'),
-//               _buildContentCard(
-//                 child: Column(
-//                   children: [
-//                     _buildTeamMember(
-//                       name: 'Sarah Johnson',
-//                       role: 'Founder & CEO',
-//                       bio:
-//                           'Former educator with 15+ years of experience in educational technology.',
-//                     ),
-//                     const Divider(color: Colors.white24, height: 30),
-//                     _buildTeamMember(
-//                       name: 'Michael Chen',
-//                       role: 'Chief Technology Officer',
-//                       bio:
-//                           'Software engineer passionate about creating intuitive learning platforms.',
-//                     ),
-//                     const Divider(color: Colors.white24, height: 30),
-//                     _buildTeamMember(
-//                       name: 'Priya Patel',
-//                       role: 'Head of Content',
-//                       bio:
-//                           'Curriculum specialist focused on creating engaging educational materials.',
-//                     ),
-//                     const Divider(color: Colors.white24, height: 30),
-//                     _buildTeamMember(
-//                       name: 'David Okafor',
-//                       role: 'UX/UI Designer',
-//                       bio:
-//                           'Designer dedicated to creating accessible and beautiful learning experiences.',
-//                     ),
-//                   ],
-//                 ),
-//               ),
+                  const SizedBox(height: 24),
 
-//               const SizedBox(height: 25),
+                  // Social Media Links
+                  const Text(
+                    'Follow Us',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildSocialButton(
+                        icon: Icons.facebook,
+                        onTap: () {
+                          // Open Facebook
+                        },
+                      ),
+                      _buildSocialButton(
+                        icon: Icons.telegram,
+                        onTap: () {
+                          // Open Twitter
+                        },
+                      ),
+                      _buildSocialButton(
+                        icon: Icons.link,
+                        onTap: () {
+                          // Open LinkedIn
+                        },
+                      ),
+                      _buildSocialButton(
+                        icon: Icons.camera_alt,
+                        onTap: () {
+                          // Open Instagram
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-//               // Contact Us Section
-//               _buildSectionHeader('Contact Us'),
-//               _buildContentCard(
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     _buildContactItem(
-//                       icon: Icons.email,
-//                       title: 'Email',
-//                       detail: 'support@falconsathi.com',
-//                     ),
-//                     const SizedBox(height: 20),
-//                     _buildContactItem(
-//                       icon: Icons.phone,
-//                       title: 'Phone',
-//                       detail: '+1 (555) 123-4567',
-//                     ),
-//                     const SizedBox(height: 20),
-//                     _buildContactItem(
-//                       icon: Icons.location_on,
-//                       title: 'Address',
-//                       detail: '123 Education Lane, Tech City, CA 94043',
-//                     ),
-//                     const SizedBox(height: 25),
-//                     GradiantButton(
-//                       buttonText: 'SEND US A MESSAGE',
-//                       buttonWidth: double.infinity,
-//                       onTap: () {
-//                         // Navigate to contact form or open email app
-//                         _showContactDialog(context);
-//                       },
-//                     ),
-//                   ],
-//                 ),
-//               ),
+  Widget _buildValueCard({
+    required IconData icon,
+    required String title,
+    required String description,
+  }) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Icon(icon, size: 40, color: Colors.blue),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-//               const SizedBox(height: 25),
+  Widget _buildTeamMemberCard({
+    required String name,
+    required String role,
+    required String imageUrl,
+  }) {
+    return Container(
+      width: 140,
+      margin: const EdgeInsets.only(right: 16),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundColor: Colors.grey[200],
+            child: const Icon(
+              Icons.person,
+              size: 40,
+              color: Colors.grey,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            name,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            role,
+            style: const TextStyle(
+              color: Colors.grey,
+              fontSize: 14,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
 
-//               // Social Media Links
-//               _buildSectionHeader('Follow Us'),
-//               Container(
-//                 padding: const EdgeInsets.symmetric(vertical: 20),
-//                 decoration: BoxDecoration(
-//                   color: Pallete.blueColor,
-//                   borderRadius: BorderRadius.circular(15),
-//                 ),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: [
-//                     _buildSocialButton(Icons.facebook, 'Facebook', () {}),
-//                     _buildSocialButton(Icons.camera_alt, 'Instagram', () {}),
-//                     // _buildSocialButton(Icons.twitter, 'Twitter', () {}),
-//                     _buildSocialButton(Icons.video_library, 'YouTube', () {}),
-//                   ],
-//                 ),
-//               ),
+  Widget _buildContactItem({
+    required IconData icon,
+    required String title,
+    required String content,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ListTile(
+        leading: Icon(icon, color: Colors.blue),
+        title: Text(title),
+        subtitle: Text(content),
+        onTap: onTap,
+      ),
+    );
+  }
 
-//               const SizedBox(height: 30),
-
-//               // Copyright and Legal
-//               Center(
-//                 child: Column(
-//                   children: [
-//                     Text(
-//                       '© ${DateTime.now().year} falconsathi. All rights reserved.',
-//                       style: TextStyle(
-//                         color: Colors.white.withOpacity(0.7),
-//                         fontSize: 14,
-//                       ),
-//                     ),
-//                     const SizedBox(height: 10),
-//                     Row(
-//                       mainAxisAlignment: MainAxisAlignment.center,
-//                       children: [
-//                         TextButton(
-//                           onPressed: () {},
-//                           child: const Text(
-//                             'Privacy Policy',
-//                             style: TextStyle(color: Colors.white70),
-//                           ),
-//                         ),
-//                         const Text('|',
-//                             style: TextStyle(color: Colors.white70)),
-//                         TextButton(
-//                           onPressed: () {},
-//                           child: const Text(
-//                             'Terms of Service',
-//                             style: TextStyle(color: Colors.white70),
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-//               ),
-
-//               const SizedBox(height: 20),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   // Helper method to build section headers
-//   Widget _buildSectionHeader(String title) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 10),
-//       child: Text(
-//         title,
-//         style: TextStyle(
-//           fontSize: 20,
-//           fontWeight: FontWeight.bold,
-//           color: Pallete.titleTextColor,
-//         ),
-//       ),
-//     );
-//   }
-
-//   // Helper method to build content cards
-//   Widget _buildContentCard({required Widget child}) {
-//     return Container(
-//       width: double.infinity,
-//       padding: const EdgeInsets.all(20),
-//       decoration: BoxDecoration(
-//         color: Pallete.blueColor,
-//         borderRadius: BorderRadius.circular(15),
-//       ),
-//       child: child,
-//     );
-//   }
-
-//   // Helper method to build feature items
-//   Widget _buildFeatureItem({
-//     required IconData icon,
-//     required String title,
-//     required String description,
-//   }) {
-//     return Row(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Container(
-//           padding: const EdgeInsets.all(10),
-//           decoration: BoxDecoration(
-//             color: Pallete.blueDarkColor,
-//             borderRadius: BorderRadius.circular(10),
-//           ),
-//           child: Icon(
-//             icon,
-//             color: Pallete.textColor,
-//             size: 24,
-//           ),
-//         ),
-//         const SizedBox(width: 15),
-//         Expanded(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text(
-//                 title,
-//                 style: const TextStyle(
-//                   fontSize: 16,
-//                   fontWeight: FontWeight.bold,
-//                   color: Colors.white,
-//                 ),
-//               ),
-//               const SizedBox(height: 5),
-//               Text(
-//                 description,
-//                 style: const TextStyle(
-//                   fontSize: 14,
-//                   color: Colors.white70,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-
-//   // Helper method to build team member items
-//   Widget _buildTeamMember({
-//     required String name,
-//     required String role,
-//     required String bio,
-//   }) {
-//     return Row(
-//       crossAxisAlignment: CrossAxisAlignment.center,
-//       children: [
-//         CircleAvatar(
-//           radius: 30,
-//           backgroundColor: Pallete.blueDarkColor,
-//           child: Text(
-//             name.substring(0, 1),
-//             style: TextStyle(
-//               fontSize: 24,
-//               fontWeight: FontWeight.bold,
-//               color: Pallete.textColor,
-//             ),
-//           ),
-//         ),
-//         const SizedBox(width: 15),
-//         Expanded(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text(
-//                 name,
-//                 style: const TextStyle(
-//                   fontSize: 16,
-//                   fontWeight: FontWeight.bold,
-//                   color: Colors.white,
-//                 ),
-//               ),
-//               Text(
-//                 role,
-//                 style: TextStyle(
-//                   fontSize: 14,
-//                   color: Pallete.textColor,
-//                   fontWeight: FontWeight.w500,
-//                 ),
-//               ),
-//               const SizedBox(height: 5),
-//               Text(
-//                 bio,
-//                 style: const TextStyle(
-//                   fontSize: 14,
-//                   color: Colors.white70,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-
-//   // Helper method to build contact items
-//   Widget _buildContactItem({
-//     required IconData icon,
-//     required String title,
-//     required String detail,
-//   }) {
-//     return Row(
-//       children: [
-//         Container(
-//           padding: const EdgeInsets.all(10),
-//           decoration: BoxDecoration(
-//             color: Pallete.blueDarkColor,
-//             borderRadius: BorderRadius.circular(10),
-//           ),
-//           child: Icon(
-//             icon,
-//             color: Pallete.textColor,
-//             size: 24,
-//           ),
-//         ),
-//         const SizedBox(width: 15),
-//         Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text(
-//               title,
-//               style: const TextStyle(
-//                 fontSize: 14,
-//                 color: Colors.white70,
-//               ),
-//             ),
-//             Text(
-//               detail,
-//               style: const TextStyle(
-//                 fontSize: 16,
-//                 color: Colors.white,
-//                 fontWeight: FontWeight.w500,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-
-//   // Helper method to build social media buttons
-//   Widget _buildSocialButton(IconData icon, String label, VoidCallback onTap) {
-//     return InkWell(
-//       onTap: onTap,
-//       child: Column(
-//         children: [
-//           Container(
-//             padding: const EdgeInsets.all(12),
-//             decoration: BoxDecoration(
-//               color: Pallete.blueDarkColor,
-//               shape: BoxShape.circle,
-//             ),
-//             child: Icon(
-//               icon,
-//               color: Pallete.textColor,
-//               size: 24,
-//             ),
-//           ),
-//           const SizedBox(height: 5),
-//           Text(
-//             label,
-//             style: const TextStyle(
-//               fontSize: 12,
-//               color: Colors.white70,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-
-//   // Contact dialog
-//   void _showContactDialog(BuildContext context) {
-//     final TextEditingController nameController = TextEditingController();
-//     final TextEditingController emailController = TextEditingController();
-//     final TextEditingController messageController = TextEditingController();
-
-//     showDialog(
-//       context: context,
-//       builder: (context) => Dialog(
-//         backgroundColor: Pallete.blueDarkColor,
-//         shape: RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(20),
-//         ),
-//         child: Padding(
-//           padding: const EdgeInsets.all(20),
-//           child: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               Text(
-//                 'Contact Us',
-//                 style: TextStyle(
-//                   fontSize: 20,
-//                   fontWeight: FontWeight.bold,
-//                   color: Pallete.titleTextColor,
-//                 ),
-//               ),
-//               const SizedBox(height: 20),
-//               TextField(
-//                 controller: nameController,
-//                 style: const TextStyle(color: Colors.white),
-//                 decoration: InputDecoration(
-//                   hintText: 'Your Name',
-//                   hintStyle: const TextStyle(color: Colors.white54),
-//                   filled: true,
-//                   fillColor: Pallete.blueColor,
-//                   border: OutlineInputBorder(
-//                     borderRadius: BorderRadius.circular(10),
-//                     borderSide: BorderSide.none,
-//                   ),
-//                 ),
-//               ),
-//               const SizedBox(height: 15),
-//               TextField(
-//                 controller: emailController,
-//                 style: const TextStyle(color: Colors.white),
-//                 decoration: InputDecoration(
-//                   hintText: 'Your Email',
-//                   hintStyle: const TextStyle(color: Colors.white54),
-//                   filled: true,
-//                   fillColor: Pallete.blueColor,
-//                   border: OutlineInputBorder(
-//                     borderRadius: BorderRadius.circular(10),
-//                     borderSide: BorderSide.none,
-//                   ),
-//                 ),
-//               ),
-//               const SizedBox(height: 15),
-//               TextField(
-//                 controller: messageController,
-//                 style: const TextStyle(color: Colors.white),
-//                 maxLines: 4,
-//                 decoration: InputDecoration(
-//                   hintText: 'Your Message',
-//                   hintStyle: const TextStyle(color: Colors.white54),
-//                   filled: true,
-//                   fillColor: Pallete.blueColor,
-//                   border: OutlineInputBorder(
-//                     borderRadius: BorderRadius.circular(10),
-//                     borderSide: BorderSide.none,
-//                   ),
-//                 ),
-//               ),
-//               const SizedBox(height: 20),
-//               GradiantButton(
-//                 buttonText: 'SEND',
-//                 buttonWidth: double.infinity,
-//                 onTap: () {
-//                   // Process the contact form
-//                   Navigator.pop(context);
-//                   ScaffoldMessenger.of(context).showSnackBar(
-//                     const SnackBar(
-//                       content:
-//                           Text('Message sent! We\'ll get back to you soon.'),
-//                       backgroundColor: Colors.green,
-//                     ),
-//                   );
-//                 },
-//               ),
-//               const SizedBox(height: 10),
-//               TextButton(
-//                 onPressed: () => Navigator.pop(context),
-//                 child: Text(
-//                   'Cancel',
-//                   style: TextStyle(color: Pallete.textColor),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  Widget _buildSocialButton({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(30),
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Icon(
+          icon,
+          color: Colors.white,
+          size: 30,
+        ),
+      ),
+    );
+  }
+}

@@ -1,5 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:falconsathi/core/theme/app_pallete.dart';
+import 'package:falconsathi/features/home/view/pages/sidebar.dart';
+import 'package:falconsathi/features/purchase/view/pages/purchase.dart';
+import 'package:falconsathi/features/sidecomponents/profile.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,10 +25,33 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Pallete.blueDarkColor,
-        title: const Text('Home',style: TextStyle(color: Colors.white),),
+        title: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Sidebar()));
+            },
+            icon: Icon(
+              Icons.menu,
+              color: Colors.white,
+            )),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications,color: Colors.white,)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.menu,color: Colors.white,)),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+              )),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()));
+              },
+              icon: const Icon(
+                Icons.person,
+                color: Colors.white,
+              )),
         ],
       ),
       body: SingleChildScrollView(
@@ -186,10 +212,21 @@ class HomePage extends StatelessWidget {
                         'assets/images/filter.jpg',
                         '₹1,500',
                       ),
-                      _buildProductCard(
-                        'More Products',
-                        'assets/images/more.png',
-                        'View All',
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PurchasePage()));
+                        },
+                        child: Text(
+                          'More Products',
+                        ),
+                        // child: _buildProductCard(
+                        //   'More Products',
+                        //   'assets/images/more.png',
+                        //   'View All',
+                        // ),
                       ),
                     ],
                   ),
