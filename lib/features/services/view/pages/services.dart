@@ -15,7 +15,7 @@ class ServicesPage extends StatelessWidget {
         backgroundColor: Pallete.blueDarkColor,
       ),
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         children: [
           _buildServiceCard(
             context: context,
@@ -87,7 +87,7 @@ class ServicesPage extends StatelessWidget {
   }) {
     return Card(
       elevation: 4,
-      margin: EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -96,7 +96,8 @@ class ServicesPage extends StatelessWidget {
             height: 200,
             width: double.infinity,
             child: ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(4)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(4)),
               child: Image.asset(
                 imageUrl,
                 fit: BoxFit.cover,
@@ -120,12 +121,12 @@ class ServicesPage extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   description,
                   style: TextStyle(
@@ -133,7 +134,7 @@ class ServicesPage extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -154,10 +155,10 @@ class ServicesPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Pallete.blueDarkColor,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Book Now',
                         style: TextStyle(
                           color: Colors.white,

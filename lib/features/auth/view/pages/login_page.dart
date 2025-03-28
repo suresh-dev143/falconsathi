@@ -1,4 +1,5 @@
 import 'package:falconsathi/features/home/view/pages/bottom_nav.dart';
+import 'package:falconsathi/features/seller/home/view/pages/sellerhome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:falconsathi/core/theme/app_pallete.dart';
@@ -119,6 +120,18 @@ class LoginPage extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const BottomNav()));
+                      }),
+                  SizedBox(
+                    height: he * 0.01,
+                  ),
+                  GradiantButton(
+                      buttonText: 'LOG IN AS SELLER',
+                      buttonWidth: double.infinity,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SellerHomePage()));
                       }),
                   SizedBox(
                     height: he * 0.01,
