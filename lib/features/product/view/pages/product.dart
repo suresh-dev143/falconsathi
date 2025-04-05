@@ -127,19 +127,12 @@ class _ProductListPageState extends State<ProductListPage> {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text('Products'),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
               icon: const Icon(Icons.search),
               onPressed: () {
                 showSearch(context: context, delegate: CustomSearchDelegate());
-              }),
-          IconButton(
-              icon: const Icon(Icons.shopping_cart),
-              onPressed: () {
-                Navigator.push(
-                    // ignore: prefer_const_constructors
-                    context,
-                    MaterialPageRoute(builder: (context) => const CartPage()));
               }),
         ],
       ),

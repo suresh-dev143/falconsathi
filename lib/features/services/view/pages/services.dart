@@ -92,7 +92,7 @@ class ServicesPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Image with error handling
-          Container(
+          SizedBox(
             height: 200,
             width: double.infinity,
             child: ClipRRect(
@@ -148,10 +148,8 @@ class ServicesPage extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // Add booking functionality
-                        // Navigator.push(context, MaterialPageRoute(
-                        //   builder: (context) => BookingPage(service: title),
-                        // ));
+                        showBookingPopup(context);
+                        print('Booking for $title initiated');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Pallete.blueDarkColor,
@@ -173,6 +171,90 @@ class ServicesPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void showBookingPopup(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+    String name = '';
+    DateTime? selectedDate;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Book a Service"),
+          content: StatefulBuilder(
+            builder: (context, setState) {
+              return Form(
+                key: formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Name Input
+                    TextFormField(
+                      decoration: const InputDecoration(labelText: "Your Name"),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your name';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) => name = value,
+                    ),
+
+                    // Date Picker
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            selectedDate == null
+                                ? "Pick a date"
+                                : "${selectedDate!.toLocal()}".split(' ')[0],
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.calendar_today),
+                          onPressed: () async {
+                            DateTime? picked = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(2100),
+                            );
+                            if (picked != null) {
+                              setState(() {
+                                selectedDate = picked;
+                              });
+                            }
+                          },
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("Cancel"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate() && selectedDate != null) {
+                  // Handle booking logic here (e.g., API call)
+                  print("Booking confirmed: $name on $selectedDate");
+                  Navigator.of(context).pop();
+                }
+              },
+              child: const Text("Confirm"),
+            ),
+          ],
+        );
+      },
     );
   }
 }
