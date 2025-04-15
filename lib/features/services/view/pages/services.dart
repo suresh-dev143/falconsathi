@@ -1,3 +1,4 @@
+import 'package:falconsathi/features/services/view/widgets/booking.dart';
 import 'package:flutter/material.dart';
 import 'package:falconsathi/core/theme/app_pallete.dart';
 
@@ -148,7 +149,7 @@ class ServicesPage extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        showBookingPopup(context);
+                        showBookingPopup(context, title);
                         print('Booking for $title initiated');
                       },
                       style: ElevatedButton.styleFrom(
@@ -174,16 +175,17 @@ class ServicesPage extends StatelessWidget {
     );
   }
 
-  void showBookingPopup(BuildContext context) {
+  void showBookingPopup(BuildContext context, String serviceName) {
     final formKey = GlobalKey<FormState>();
     String name = '';
     DateTime? selectedDate;
+    TimeOfDay? selectedTime;
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Book a Service"),
+          title: Text("Book $serviceName Service"),
           content: StatefulBuilder(
             builder: (context, setState) {
               return Form(
@@ -203,8 +205,9 @@ class ServicesPage extends StatelessWidget {
                       onChanged: (value) => name = value,
                     ),
 
-                    // Date Picker
                     const SizedBox(height: 12),
+
+                    // Date Picker
                     Row(
                       children: [
                         Expanded(
@@ -232,6 +235,35 @@ class ServicesPage extends StatelessWidget {
                         )
                       ],
                     ),
+
+                    const SizedBox(height: 12),
+
+                    // Time Picker
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            selectedTime == null
+                                ? "Pick a time"
+                                : selectedTime!.format(context),
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.access_time),
+                          onPressed: () async {
+                            TimeOfDay? picked = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            );
+                            if (picked != null) {
+                              setState(() {
+                                selectedTime = picked;
+                              });
+                            }
+                          },
+                        )
+                      ],
+                    ),
                   ],
                 ),
               );
@@ -244,10 +276,25 @@ class ServicesPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                if (formKey.currentState!.validate() && selectedDate != null) {
-                  // Handle booking logic here (e.g., API call)
-                  print("Booking confirmed: $name on $selectedDate");
+                if (formKey.currentState!.validate() &&
+                    selectedDate != null &&
+                    selectedTime != null) {
+                  final bookingDateTime = DateTime(
+                    selectedDate!.year,
+                    selectedDate!.month,
+                    selectedDate!.day,
+                    selectedTime!.hour,
+                    selectedTime!.minute,
+                  );
+
+                  // You can now use bookingDateTime however you'd like
+                  print("Booking confirmed: $name on $bookingDateTime");
+
                   Navigator.of(context).pop();
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Please select both date and time")),
+                  );
                 }
               },
               child: const Text("Confirm"),
